@@ -1,8 +1,9 @@
-import { clerkMiddleware } from '@clerk/nextjs/server';
+import { authMiddleware } from "@clerk/nextjs";
 
-// Make sure that the `/api/webhooks/(.*)` route is not protected here
-export default clerkMiddleware()
+export default authMiddleware({
+  ignoredRoutes: ["/api/webhook"],
+});
 
 export const config = {
-  matcher: [ '/((?!.*\\..*|_next).*)', '/', '/(api|trpc)(.*)'],
+  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };
