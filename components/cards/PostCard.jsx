@@ -11,7 +11,7 @@ const PostCard = ({post, creator, loggedInUser}) => {
   return (
     <div className='w-full max-w-xl rounded-lg flex flex-col gap-4 bg-dark-1 p-5 max-sm:gap-2'>
       <div className='flex justify-between'>
-        <Link href={`/profile/${creator._id}`}>
+        <Link href={`/profile/${creator._id}/posts`}>
             <div className='flex gap-3 items-center'>
                 <Image 
                 loader={() => creator?.profilePhoto}
@@ -28,7 +28,7 @@ const PostCard = ({post, creator, loggedInUser}) => {
             </div>
         </Link>
 
-        {loggedInUser.id === creator.clerkId && (
+        {loggedInUser?.id === creator?.clerkId && (
             <Link href={`/edit-post/${post._id}`}>
                 <BorderColor sx={{ color: "white", cursor: "pointer" }} />
             </Link>

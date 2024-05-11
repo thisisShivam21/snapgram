@@ -5,7 +5,7 @@ export const GET = async (req, { params }) => {
     try {
         await connectToDB()
 
-        const user = await User.findOne({ clerkId: params.id }).populate("followers following").exec()
+        const user = await User.findOne({ clerkId: params.id }).populate("posts savedPosts likedPosts followers following").exec()
 
         return new Response(JSON.stringify(user), {
             status: 200

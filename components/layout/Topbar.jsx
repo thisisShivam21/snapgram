@@ -19,7 +19,7 @@ const Topbar = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <Search className="search-icon" onClick={() => {}} />
+        <Search className="search-icon" onClick={() => router.push(`/search/posts/${search}`)} />
       </div>
       <button
         className="create-post-btn"
