@@ -6,7 +6,7 @@ import { useUser } from "@clerk/nextjs";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-const ProfilePage = () => {
+const ProfilePosts = () => {
   const { id } = useParams();
   const { user, isLoaded } = useUser();
   const [loading, setLoading] = useState(true);
@@ -52,4 +52,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default ProfilePosts;

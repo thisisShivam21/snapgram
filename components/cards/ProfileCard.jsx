@@ -38,6 +38,23 @@ const ProfileCard = ({ userData, activeTab }) => {
   const isFollowing = userInfo?.following?.find(
     (item) => item?._id === userData?._id
   );
+
+  const handleFollow = async () => {
+    const response = await fetch(
+      `/api/user/${user.id}/follow/${userData._id}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const data = await response.json();
+
+    setUserInfo(data);
+  };
+
   return loading || !isLoaded ? (
     <Loader />
   ) : (
@@ -79,10 +96,12 @@ const ProfileCard = ({ userData, activeTab }) => {
           (isFollowing ? (
             <PersonRemove
               sx={{ color: "#7857FF", cursor: "pointer", fontSize: "40px" }}
+              onClick={() => handleFollow()}
             />
           ) : (
             <PersonAddAlt
               sx={{ color: "#7857FF", cursor: "pointer", fontSize: "40px" }}
+              onClick={() => handleFollow()}
             />
           ))}
       </div>

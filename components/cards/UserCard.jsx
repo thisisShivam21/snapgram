@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import Loader from "../Loader";
 import { PersonAddAlt, PersonRemove } from "@mui/icons-material";
 
-const UserCard = ({ userData }) => {
+const UserCard = ({ userData , update }) => {
   const { user, isLoaded } = useUser();
 
   const [loading, setLoading] = useState(true);
@@ -36,6 +36,23 @@ const UserCard = ({ userData }) => {
     (item) => item?._id === userData?._id
   );
 
+  const handleFollow = async () => {
+    const response = await fetch(
+      `/api/user/${user.id}/follow/${userData._id}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const data = await response.json();
+
+    setUserInfo(data);
+    update();
+  };
+
   return loading || !isLoaded ? (
     <Loader />
   ) : (
@@ -61,9 +78,13 @@ const UserCard = ({ userData }) => {
 
       {user.id !== userData.clerkId &&
         (isFollowing ? (
-          <PersonRemove sx={{ color: "#7857FF", cursor: "pointer" }} />
+          <PersonRemove sx={{ color: "#7857FF", cursor: "pointer" }} 
+          onClick={()=> handleFollow()}
+          />
+
         ) : (
-          <PersonAddAlt sx={{ color: "#7857FF", cursor: "pointer" }} />
+          <PersonAddAlt sx={{ color: "#7857FF", cursor: "pointer" }}
+          onClick={()=> handleFollow()} />
         ))}
     </div>
   );

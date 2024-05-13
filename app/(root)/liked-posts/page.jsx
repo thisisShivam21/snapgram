@@ -1,44 +1,42 @@
-"use client";
+"use client"
 
 import Loader from "@/components/Loader";
 import PostCard from "@/components/cards/PostCard";
 import { useUser } from "@clerk/nextjs";
 import React, { useEffect, useState } from "react";
 
-const Home = () => {
+const LikedPosts = () => {
   const { user, isLoaded } = useUser();
   const [loading, setLoading] = useState(true);
-  const [feedPost, setFeedPost] = useState([]);
+  const [userData, setUserData] = useState({});
 
-  const getFeedPost = async () => {
-    const response = await fetch(`/api/post`);
+  const getUser = async () => {
+    const response = await fetch(`/api/user/${user.id}`);
     const data = await response.json();
-
-    setFeedPost(data);
+    setUserData(data);
     setLoading(false);
   };
 
   useEffect(() => {
     if (user) {
-      getFeedPost();
+      getUser();
     }
-  }, []);
-
+  }, [user]);
   return loading || !isLoaded ? (
     <Loader />
   ) : (
-    <div className="flex flex-col gap-10">
-      {feedPost?.map((post) => (
+    <div className="flex flex-col gap-9">
+      {userData?.likedPosts.map((post) => (
         <PostCard
           key={post._id}
           post={post}
           creator={post.creator}
           loggedInUser={user}
-          update={getFeedPost}
+          update={getUser}
         />
       ))}
     </div>
   );
 };
 
-export default Home;
+export default LikedPosts;

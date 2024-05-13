@@ -47,7 +47,7 @@ const LeftSidebar = () => {
       </Link>
       <div className="flex flex-col gap-2">
         <div className="flex flex-col gap-2 items-center text-light-1">
-          <Link href="/">
+          <Link href={`/profile/${userData._id}/posts`}>
             <div className="w-[58px] h-[58px]">
               <Image
                 loader={() => userData?.profilePhoto}
