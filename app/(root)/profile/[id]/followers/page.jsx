@@ -24,7 +24,9 @@ const Followers = () => {
   };
 
   useEffect(() => {
-    getUser();
+    if(user){
+      getUser();
+    }
   }, [id]);
 
   return loading ? (

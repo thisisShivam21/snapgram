@@ -25,7 +25,10 @@ const ProfilePage = () => {
   };
 
   useEffect(() => {
-    getUser();
+
+    if(user){
+      getUser();
+    }
   }, [id]);
 
   return loading || !isLoaded ? (

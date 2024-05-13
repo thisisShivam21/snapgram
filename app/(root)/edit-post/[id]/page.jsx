@@ -25,7 +25,9 @@ const EditPost = () => {
   };
 
   useEffect(() => {
-    getPost();
+    if(user){
+      getPost();
+    }
   }, [id]);
 
   const postInfo = {

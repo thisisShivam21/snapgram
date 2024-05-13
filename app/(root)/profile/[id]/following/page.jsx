@@ -24,7 +24,9 @@ const Following = () => {
     };
   
     useEffect(() => {
-      getUser();
+      if (user) {
+        getUser();
+      }
     }, [id]);
   
     return loading ? (
