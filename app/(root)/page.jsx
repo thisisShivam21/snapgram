@@ -19,9 +19,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (user) {
-      getFeedPost();
-    }
+    getFeedPost();
   }, []);
 
   return loading || !isLoaded ? (

@@ -9,7 +9,7 @@ import {
 } from "@mui/icons-material";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const PostCard = ({ post, creator, loggedInUser, update }) => {
   const [userData, setUserData] = useState({});
@@ -57,7 +57,10 @@ const PostCard = ({ post, creator, loggedInUser, update }) => {
     setUserData(data);
     update();
   };
-
+  console.log("Creator data: ", creator)
+  console.log("Creator id: ", creator?._id)
+  const link = `/profile/${creator._id}/posts`
+  console.log(link)
   return (
     <div className="w-full max-w-xl rounded-lg flex flex-col gap-4 bg-dark-1 p-5 max-sm:gap-2">
       <div className="flex justify-between">
@@ -65,7 +68,7 @@ const PostCard = ({ post, creator, loggedInUser, update }) => {
           <div className="flex gap-3 items-center">
             <Image
               loader={() => creator?.profilePhoto}
-              src={creator.profilePhoto}
+              src={creator?.profilePhoto}
               alt="profile-photo"
               width={50}
               height={50}

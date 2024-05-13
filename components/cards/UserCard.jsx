@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Loader from "../Loader";
 import { PersonAddAlt, PersonRemove } from "@mui/icons-material";
+import Link from "next/link";
 
 const UserCard = ({ userData , update }) => {
   const { user, isLoaded } = useUser();
@@ -57,7 +58,9 @@ const UserCard = ({ userData , update }) => {
     <Loader />
   ) : (
     <div className="flex justify-between items-center">
-      <div className="flex gap-4 items-center">
+      <Link 
+      href={`/profile/${userData._id}/posts`}
+      className="flex gap-4 items-center">
         <Image
           loader={() => userData?.profilePhoto}
           src={userData.profilePhoto}
@@ -74,7 +77,7 @@ const UserCard = ({ userData , update }) => {
             @{userData.username}
           </p>
         </div>
-      </div>
+      </Link>
 
       {user.id !== userData.clerkId &&
         (isFollowing ? (
