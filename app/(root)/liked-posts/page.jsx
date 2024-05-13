@@ -1,9 +1,9 @@
 "use client"
 
+import { useUser } from "@clerk/nextjs";
 import Loader from "@/components/Loader";
 import PostCard from "@/components/cards/PostCard";
-import { useUser } from "@clerk/nextjs";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const LikedPosts = () => {
   const { user, isLoaded } = useUser();

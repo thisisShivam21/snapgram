@@ -1,7 +1,7 @@
 "use client";
 import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Loader from "../Loader";
 import { PersonAddAlt, PersonRemove } from "@mui/icons-material";
 import Link from "next/link";
@@ -33,8 +33,11 @@ const UserCard = ({ userData , update }) => {
     }
   }, [user]);
 
+  // const isFollowing = userInfo?.following?.find(
+  //   (item) => item?._id === userData?._id
+  // );
   const isFollowing = userInfo?.following?.find(
-    (item) => item?._id === userData?._id
+    (item) => item._id === userData._id
   );
 
   const handleFollow = async () => {

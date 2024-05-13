@@ -20,6 +20,7 @@ export const GET = async (req, { params }) => {
 export const POST = async (req,  { params }) => {
   const path = require("path");
   const currentWorkingDirectory = process.cwd();
+
   try {
     await connectToDB();
     // get the data from req
@@ -64,7 +65,7 @@ export const POST = async (req,  { params }) => {
   }
 };
 
-export const DELETE = async (req, { params }) => {
+// export const DELETE = async (req, { params }) => {
   
 
-}
+// }

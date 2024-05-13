@@ -1,14 +1,15 @@
 "use client";
+
+// import { useUser } from "@clerk/nextjs";
 import Loader from "@/components/Loader";
 import UserCard from "@/components/cards/UserCard";
-import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const SearchPeople = () => {
   const { query } = useParams();
-const {user , isLoaded  } = useUser()
+  // const {user , isLoaded  } = useUser()
   const [loading, setLoading] = useState(true);
   const [searchedPeople, setSearchedPeople] = useState([]);
 
@@ -23,9 +24,7 @@ const {user , isLoaded  } = useUser()
     getSeachedPeople();
   }, [query]);
 
-
-
-  return loading || !isLoaded ? (
+  return loading ? (
     <Loader />
   ) : (
     <div className="flex flex-col gap-10">
@@ -39,7 +38,11 @@ const {user , isLoaded  } = useUser()
       </div>
 
       {searchedPeople.map((person) => (
-        <UserCard key={person._id} userData={person} update={getSeachedPeople} />
+        <UserCard
+          key={person._id}
+          userData={person}
+          update={getSeachedPeople}
+        />
       ))}
     </div>
   );

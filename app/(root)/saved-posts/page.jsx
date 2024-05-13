@@ -1,9 +1,9 @@
 "use client"
 
+import { useUser } from "@clerk/nextjs";
 import Loader from "@/components/Loader";
 import PostCard from "@/components/cards/PostCard";
-import { useUser } from "@clerk/nextjs";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const SavedPosts = () => {
   const { user, isLoaded } = useUser();
@@ -26,7 +26,7 @@ const SavedPosts = () => {
     <Loader />
   ) : (
     <div className="flex flex-col gap-9">
-      {userData?.savedPosts.map((post) => (
+      {userData?.savedPosts?.map((post) => (
         <PostCard
           key={post._id}
           post={post}

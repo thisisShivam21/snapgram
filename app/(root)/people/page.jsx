@@ -2,7 +2,7 @@
 
 import Loader from "@/components/Loader";
 import UserCard from "@/components/cards/UserCard";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const People = () => {
   const [loading, setLoading] = useState(true);

@@ -24,7 +24,7 @@ const Posting = ({ post, apiEndpoint }) => {
         postForm.append("caption", data.caption)
         postForm.append("tag", data.tag)
 
-        if(typeof data.postData !== "string") {
+        if(typeof data.postPhoto !== "string") {
           postForm.append("postPhoto", data.postPhoto[0])
         } else {
           postForm.append("postPhoto", data.postPhoto)

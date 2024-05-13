@@ -1,29 +1,29 @@
 "use client";
+
+import { useUser } from "@clerk/nextjs";
 import Loader from "@/components/Loader";
 import PostCard from "@/components/cards/PostCard";
-import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const SearchPost = () => {
   const { query } = useParams();
-const {user , isLoaded  } = useUser()
   const [loading, setLoading] = useState(true);
   const [searchedPosts, setSearchedPosts] = useState([]);
-
+  
   const getSearchedPosts = async () => {
     const response = await fetch(`/api/post/search/${query}`);
     const data = await response.json();
     setSearchedPosts(data);
     setLoading(false);
   };
-
+  
   useEffect(() => {
     getSearchedPosts();
   }, [query]);
-
-
+  
+  const { user , isLoaded } = useUser()
 
   return loading || !isLoaded ? (
     <Loader />

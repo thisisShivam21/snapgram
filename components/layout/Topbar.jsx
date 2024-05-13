@@ -5,7 +5,7 @@ import { Add, Logout, Person, Search } from "@mui/icons-material";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Loader from "../Loader";
 
 const Topbar = () => {
@@ -54,13 +54,12 @@ const Topbar = () => {
       </button>
 
       <div className="flex gap-4 md:hidden">
-        <Link 
-        href={`/profile/${user._id}/posts`}
-        >
+        {/* <Link href={`/profile/${user._id}/posts`}> */}
+        <Link href={`/profile/${userData._id}/posts`}>
           <Person sx={{ fontSize: "35px", color: "white" }} />
         </Link>
 
-        <UserButton appearance={{ baseTheme: dark }} />
+        <UserButton appearance={{ baseTheme: dark }} afterSignOutUrl="/sign-in" />
       </div>
     </div>
   );

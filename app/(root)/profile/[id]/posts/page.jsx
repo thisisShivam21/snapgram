@@ -1,14 +1,15 @@
 "use client";
+
+import { useUser } from "@clerk/nextjs";
 import Loader from "@/components/Loader";
 import PostCard from "@/components/cards/PostCard";
 import ProfileCard from "@/components/cards/ProfileCard";
-import { useUser } from "@clerk/nextjs";
 import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const ProfilePosts = () => {
   const { id } = useParams();
-  const { user, isLoaded } = useUser();
+  // const { user, isLoaded } = useUser();
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState({});
 
@@ -25,11 +26,12 @@ const ProfilePosts = () => {
   };
 
   useEffect(() => {
-
-    if(user){
-      getUser();
-    }
+    getUser();
   }, [id]);
+
+  const { user, isLoaded } = useUser();
+
+  // console.log(userData)
 
   return loading || !isLoaded ? (
     <Loader />

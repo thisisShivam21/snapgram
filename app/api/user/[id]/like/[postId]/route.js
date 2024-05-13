@@ -1,4 +1,3 @@
-
 import Post from "@/lib/models/Post";
 import User from "@/lib/models/User";
 import { connectToDB } from "@/lib/mongodb/mongoose";
@@ -43,8 +42,8 @@ export const POST = async (req, { params }) => {
     await post.save();
 
     return new Response(JSON.stringify(user), { status: 200 });
-  } catch (err) {
-    console.log("Error occurred in User/[id]/like/[postId] ", error)
+  } catch (error) {
+    console.log("Error occurred in User/[id]/like/[postId] ", error);
     return new Response("Failed to like/dislike post", { status: 500 });
   }
 };

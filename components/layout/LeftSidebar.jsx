@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Menu from "./Menu";
 import { SignOutButton, SignedIn, UserButton, useUser } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
@@ -14,13 +14,13 @@ const LeftSidebar = () => {
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState({});
 
+  // console.log(user)
   const getUser = async () => {
     // console.log(user)
-    const response = await fetch(`/api/user/${user?.id}`);
+    const response = await fetch(`/api/user/${user.id}`);
     // console.log(response)
     const data = await response.json();
     // console.log(data)
-
     setUserData(data);
     setLoading(false);
   };
@@ -47,7 +47,7 @@ const LeftSidebar = () => {
       </Link>
       <div className="flex flex-col gap-2">
         <div className="flex flex-col gap-2 items-center text-light-1">
-          <Link href={`/profile/${userData._id}/posts`}>
+          <Link href={`/profile/${user._id}/posts`}>
             <div className="w-[58px] h-[58px]">
               <Image
                 loader={() => userData?.profilePhoto}
@@ -85,18 +85,21 @@ const LeftSidebar = () => {
         <hr />
 
         <div className="flex gap-4 items-center">
-          <UserButton appearance={{ baseTheme: dark }} />
-          <p className="text-light-1 text-body-bold">Manage Your Account</p>
+          <UserButton
+            appearance={{ baseTheme: dark }}
+            afterSignOutUrl="/sign-in"
+          />
+          <p className="text-light-1 text-body-bold">Manage Account</p>
         </div>
 
-        <SignedIn>
+        {/* <SignedIn>
           <SignOutButton>
             <div className="flex cursor-pointer gap-4 items-center">
               <Logout sx={{ color: "white", fontSize: "32px" }} />
               <p className="text-body-bold text-light-1">Log Out</p>
             </div>
           </SignOutButton>
-        </SignedIn>
+        </SignedIn> */}
       </div>
     </div>
   );

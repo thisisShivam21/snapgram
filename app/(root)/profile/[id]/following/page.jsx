@@ -1,9 +1,10 @@
 "use client";
+
 import Loader from "@/components/Loader";
 import ProfileCard from "@/components/cards/ProfileCard";
 import UserCard from "@/components/cards/UserCard";
 import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const Following = () => {
   const { id } = useParams();
@@ -25,9 +26,7 @@ const Following = () => {
   };
 
   useEffect(() => {
-
-      getUser();
-
+    getUser();
   }, [id]);
 
   return loading ? (

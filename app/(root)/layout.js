@@ -1,6 +1,6 @@
-import { Inter } from "next/font/google";
-import "@/app/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import "@/app/globals.css";
+import { Inter } from "next/font/google";
 
 import LeftSidebar from "@/components/layout/LeftSidebar";
 import MainContainer from "@/components/layout/MainContainer";
@@ -21,11 +21,9 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <body className={`${inter.className} bg-purple-2 text-light-1`}>
           <main className="flex flex-row">
-          <LeftSidebar />
-          <MainContainer>
-            {children}
-          </MainContainer>
-          <RightSidebar />
+            <LeftSidebar />
+            <MainContainer>{children}</MainContainer>
+            <RightSidebar />
           </main>
           <Bottombar />
         </body>

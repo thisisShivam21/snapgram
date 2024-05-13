@@ -1,9 +1,9 @@
 "use client";
 
+import { useUser } from "@clerk/nextjs";
 import Loader from "@/components/Loader";
 import Posting from "@/components/form/Posting";
-import { useUser } from "@clerk/nextjs";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const CreatePost = () => {
   const { user, isLoaded } = useUser();

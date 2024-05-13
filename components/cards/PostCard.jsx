@@ -89,7 +89,7 @@ const PostCard = ({ post, creator, loggedInUser, update }) => {
           </div>
         </Link>
 
-        {loggedInUser?.id === creator?.clerkId && (
+        {loggedInUser.id === creator.clerkId && (
           <Link href={`/edit-post/${post._id}`}>
             <BorderColor sx={{ color: "white", cursor: "pointer" }} />
           </Link>

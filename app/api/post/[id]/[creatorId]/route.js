@@ -19,7 +19,7 @@ export const DELETE = async (req, { params }) => {
 
     return new Response(JSON.stringify(user), { status: 200 });
   } catch (err) {
-    console.error(err);
+    console.error("Error occured in DELETE() :: /api/post/[id]/[creatorId]/route.js ", err);
     return new Response("Failed to delete the post", { status: 500 });
   }
 };

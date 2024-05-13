@@ -1,9 +1,11 @@
 import { Inter } from "next/font/google";
-import "@/app/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+
+import "@/app/globals.css";
+
 export const metadata = {
   title: "Auth",
-  description: "Next 14 Social Media Platform",
+  description: "Next 14 Social Media Platform by Shivam and Harsh",
 };
 const inter = Inter({ subsets: ["latin"] });
 
