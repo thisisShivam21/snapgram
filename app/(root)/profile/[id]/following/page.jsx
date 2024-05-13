@@ -1,3 +1,5 @@
+"use client"
+
 import Loader from '@/components/Loader';
 import ProfileCard from '@/components/cards/ProfileCard';
 import UserCard from '@/components/cards/UserCard';
