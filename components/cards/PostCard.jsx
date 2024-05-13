@@ -4,6 +4,7 @@ import {
   Bookmark,
   BookmarkBorder,
   BorderColor,
+  Delete,
   Favorite,
   FavoriteBorder,
 } from "@mui/icons-material";
@@ -13,7 +14,7 @@ import { useEffect, useState } from "react";
 
 const PostCard = ({ post, creator, loggedInUser, update }) => {
   const [userData, setUserData] = useState({});
-
+  // console.log(userData);
   const getUser = async () => {
     const response = await fetch(`/api/user/${loggedInUser.id}`);
     const data = await response.json();
@@ -52,15 +53,18 @@ const PostCard = ({ post, creator, loggedInUser, update }) => {
         },
       }
     );
-
     const data = await response.json();
     setUserData(data);
     update();
   };
-  console.log("Creator data: ", creator)
-  console.log("Creator id: ", creator?._id)
-  const link = `/profile/${creator._id}/posts`
-  console.log(link)
+
+  const handleDelete = async () => {
+    await fetch(`/api/post/${post._id}/${userData._id}`, {
+      method: "DELETE",
+    });
+    update();
+  };
+
   return (
     <div className="w-full max-w-xl rounded-lg flex flex-col gap-4 bg-dark-1 p-5 max-sm:gap-2">
       <div className="flex justify-between">
@@ -68,8 +72,8 @@ const PostCard = ({ post, creator, loggedInUser, update }) => {
           <div className="flex gap-3 items-center">
             <Image
               loader={() => creator?.profilePhoto}
-              src={creator?.profilePhoto}
-              alt="profile-photo"
+              src={creator.profilePhoto}
+              alt="profile photo"
               width={50}
               height={50}
               className="rounded-full"
@@ -95,17 +99,19 @@ const PostCard = ({ post, creator, loggedInUser, update }) => {
       <p className="text-body-normal text-light-1 max-sm:text-small-normal">
         {post.caption}
       </p>
+
       <Image
-        loader={() => post?.postPhoto}
         src={post.postPhoto}
-        alt="profile-photo"
+        alt="post photo"
         width={200}
         height={150}
         className="rounded-lg w-full"
       />
+
       <p className="text-base-semibold text-purple-1 max-sm:text-small-normal">
         {post.tag}
       </p>
+
       <div className="flex justify-between">
         <div className="flex gap-2 items-center">
           {!isLiked ? (
@@ -134,6 +140,13 @@ const PostCard = ({ post, creator, loggedInUser, update }) => {
               onClick={() => handleSave()}
             />
           ))}
+
+        {loggedInUser.id === creator.clerkId && (
+          <Delete
+            sx={{ color: "white", cursor: "pointer" }}
+            onClick={() => handleDelete()}
+          />
+        )}
       </div>
     </div>
   );

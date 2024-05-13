@@ -63,3 +63,8 @@ export const POST = async (req,  { params }) => {
     return new Response("Failed to update a post", { status: 500 });
   }
 };
+
+export const DELETE = async (req, { params }) => {
+  
+
+}
